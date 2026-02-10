@@ -1,18 +1,20 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './controller/app.controller';
-import { AppService } from './app.service';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataBaseConnection } from './configs/data-base';
+import { controllerList } from './configs/controller';
+import { entityList } from './configs/entity';
+import { middlewareList } from './configs/middleware';
+import { providerList } from './configs/provider';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: ':memory:',   // 👈 banco em memória
-      autoLoadEntities: true,
-      synchronize: true,      // ⚠️ dev only
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [TypeOrmModule.forRoot(dataBaseConnection),],
+  controllers: controllerList,
+  providers: [...entityList, ...providerList],
 })
-export class AppModule {}
+export class AppModule implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(...middlewareList)
+      .forRoutes('*')
+  }
+}
