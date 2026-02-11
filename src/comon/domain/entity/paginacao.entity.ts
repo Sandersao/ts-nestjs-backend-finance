@@ -1,4 +1,4 @@
-export class PAginacaoEntity {
+export class PaginacaoEntity {
     constructor(
         public readonly page: number,
         public readonly perPage: number,

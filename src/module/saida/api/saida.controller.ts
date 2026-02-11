@@ -1,25 +1,21 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import { SaidaCreateRequest } from './request/saida-create.requests'
-import { SaidaCreateUseCase } from '../application/usecase/saida-create.usecase'
-import { SaidaListUseCase } from '../application/usecase/saida-list.usecase'
 import { SaidaListRequest } from './request/saida-list.requests'
 import { ApiBody } from '@nestjs/swagger'
+import { SaidaApplication } from '../application/saida.appliaciton'
 
 @Controller('/saida')
 export class SaidaController {
-  constructor(
-    private readonly saidaListUseCase: SaidaListUseCase,
-    private readonly saidaCreateUseCase: SaidaCreateUseCase,
-  ) { }
+  constructor(private readonly saidaApplication: SaidaApplication) { }
 
   @Get()
   async findAll(@Query() query: SaidaListRequest) {
-    return this.saidaListUseCase.execute(query)
+    return this.saidaApplication.list(query)
   }
 
   @Post()
   @ApiBody({type: SaidaCreateRequest})
   async create(@Body() body: SaidaCreateRequest) {
-    return this.saidaCreateUseCase.execute(body)
+    return this.saidaApplication.create(body)
   }
 }

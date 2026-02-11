@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { exceptionFilterList } from './configs/exception-filter';
+import { interceptorList } from './configs/interceptor';
 
 const config = new DocumentBuilder()
   .setTitle('Finance API')
@@ -21,6 +22,7 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(...exceptionFilterList)
+  app.useGlobalInterceptors(...interceptorList);
 
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('docs', app, document)

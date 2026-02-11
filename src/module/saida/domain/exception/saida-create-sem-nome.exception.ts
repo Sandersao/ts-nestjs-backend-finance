@@ -1,4 +1,4 @@
-import { DomainException } from "../../../../comon/application/domain/exception/domain.exception";
+import { DomainException } from "src/comon/domain/exception/domain.exception";
 
 export class SaidaCreateSemNomeException extends DomainException {
     constructor() {
