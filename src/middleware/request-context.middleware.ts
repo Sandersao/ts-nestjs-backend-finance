@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
-import { randomUUID } from 'crypto'
 import { Injectable, NestMiddleware } from '@nestjs/common'
+import { randomUUID } from 'node:crypto'
 
 @Injectable()
 export class RequestContextMiddleware

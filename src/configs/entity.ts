@@ -1,6 +1,5 @@
-import { Provider } from "@nestjs/common";
-import { AppService } from "src/app.service";
+import { Saida } from "src/module/saida/infra/entity/saida";
 
-export const entityList: Provider<any>[] = [
-    AppService
+export const entityList = [
+    Saida,
 ]

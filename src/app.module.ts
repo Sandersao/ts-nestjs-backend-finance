@@ -7,7 +7,10 @@ import { middlewareList } from './configs/middleware';
 import { providerList } from './configs/provider';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataBaseConnection),],
+  imports: [
+    TypeOrmModule.forRoot(dataBaseConnection),
+    TypeOrmModule.forFeature(entityList)
+  ],
   controllers: controllerList,
   providers: [...entityList, ...providerList],
 })

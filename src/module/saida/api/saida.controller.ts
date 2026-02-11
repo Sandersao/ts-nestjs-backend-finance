@@ -3,7 +3,7 @@ import { SaidaCreateRequest } from './request/saida-create.requests'
 import { SaidaCreateUseCase } from '../application/usecase/saida-create.usecase'
 import { SaidaListUseCase } from '../application/usecase/saida-list.usecase'
 import { SaidaListRequest } from './request/saida-list.requests'
-import { ApiBody, ApiQuery } from '@nestjs/swagger'
+import { ApiBody } from '@nestjs/swagger'
 
 @Controller('/saida')
 export class SaidaController {
@@ -13,7 +13,6 @@ export class SaidaController {
   ) { }
 
   @Get()
-  @ApiQuery({type: SaidaListRequest})
   async findAll(@Query() query: SaidaListRequest) {
     return this.saidaListUseCase.execute(query)
   }

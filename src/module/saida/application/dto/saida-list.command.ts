@@ -1,6 +1,12 @@
-export class SaidaListCommand {
+import { PaginacaoCommand } from "src/comon/domain/dto/paginacao.command";
+
+export class SaidaListCommand extends PaginacaoCommand {
   constructor(
+    public readonly page: number,
+    public readonly perPage: number,
     public readonly name?: string,
-    public readonly value?: number,
-  ) {}
+    public readonly ocorrencia?: Date,
+  ) {
+    super(page, perPage)
+  }
 }

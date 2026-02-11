@@ -1,9 +1,12 @@
 import { SaidaEntity } from "../../domain/entity/saida.entity"
-import { SaidaRepository } from "../../domain/repository/saida.repository"
 import { SaidaCreateCommand } from "../dto/saida-create.command"
+import { Inject, Injectable } from "@nestjs/common"
+import { SAIDA_REPOSITORY, SaidaRepository } from "../repository/saida.repository"
 
+@Injectable()
 export class SaidaCreateUseCase {
   constructor(
+    @Inject(SAIDA_REPOSITORY)
     private readonly repository: SaidaRepository,
   ) {}
 

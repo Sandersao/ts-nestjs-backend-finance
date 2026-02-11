@@ -1,16 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator'
+import { IsNumber, IsOptional, IsString } from 'class-validator'
 
 export class SaidaCreateRequest {
 
-  @ApiProperty({required: true, type: String, example: 'Despesa de testes'})
-  @IsNotEmpty()
+  @ApiProperty({required: false, type: String, example: 'Despesa de testes'})
+  @IsOptional()
   @IsString()
   name!: string
 
-  @ApiProperty({required: true, type: Number, example: 2.5})
-  @IsNotEmpty()
+  @ApiProperty({required: false, type: Number, example: 2.5})
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
   value!: number
