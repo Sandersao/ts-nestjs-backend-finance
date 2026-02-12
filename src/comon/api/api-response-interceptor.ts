@@ -20,9 +20,6 @@ export class ApiResponseInterceptor<T> implements NestInterceptor<T, ApiResponse
           return data.payload;
         }
 
-        console.log(data);
-        
-
         return {
           code: response.statusCode ?? HttpStatus.OK,
           message: 'Success',
