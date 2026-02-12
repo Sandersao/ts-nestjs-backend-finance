@@ -1,4 +1,4 @@
-import { PaginacaoCommand } from "src/comon/domain/dto/paginacao.command";
+import { PaginacaoCommand } from "src/comon/application/dto/paginacao.command";
 
 export class SaidaListCommand extends PaginacaoCommand {
   constructor(
