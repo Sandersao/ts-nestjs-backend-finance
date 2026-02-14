@@ -1,5 +1,3 @@
-import { Saida } from "src/module/saida/infra/entity/saida";
+import { SaidaOrmEntity } from 'src/module/saida/infra/entity/saida.orm-entity';
 
-export const entityList = [
-    Saida,
-]
+export const entityList = [SaidaOrmEntity];

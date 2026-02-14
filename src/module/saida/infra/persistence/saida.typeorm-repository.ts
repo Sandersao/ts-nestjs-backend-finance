@@ -1,37 +1,49 @@
-import { Injectable } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { SaidaEntity } from "../../domain/entity/saida.entity"
-import { FindOptionsWhere, Repository } from "typeorm"
-import { SaidaRepository } from "../../application/repository/saida.repository"
-import { Saida } from "../entity/saida"
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Saida } from '../../domain/entity/saida';
+import { FindOptionsWhere, Repository } from 'typeorm';
+import { SaidaRepository } from '../../domain/repository/saida.repository';
+import { SaidaOrmEntity } from '../entity/saida.orm-entity';
+import { SaidaMapper } from '../mapper/saida.mapper';
 
 @Injectable()
-export class SaidaTypeormRepository implements SaidaRepository{
+export class SaidaTypeormRepository implements SaidaRepository {
   constructor(
-    @InjectRepository(Saida)
-    private readonly repo: Repository<SaidaEntity>,
-  ) { }
+    @InjectRepository(SaidaOrmEntity)
+    private readonly repo: Repository<SaidaOrmEntity>,
+  ) {}
 
-  async save(saida: SaidaEntity): Promise<void> {
-    const entity = this.repo.create({
+  async save(saida: Saida) {
+    const ormEntity = this.repo.create({
+      uuid: saida.uuid,
       name: saida.name,
-      value: saida.value
-    })
+      value: saida.value,
+      criacaoData: saida.criacao.date
+    });
 
-    await this.repo.save(entity)
+    return SaidaMapper.toDomain(await this.repo.save(ormEntity));
   }
 
-  async findAll(limit: number, offset: number, name?: string): Promise<SaidaEntity[]> {
-    return (await this.repo.findAndCount({where: this.makeWhere(name), skip: offset, take: limit}))[0]
+  async findAll(
+    limit: number,
+    offset: number,
+    name?: string,
+  ) {
+    return (await this.repo.find({
+        where: this.makeWhere(name),
+        skip: offset,
+        take: limit,
+    }))
+    .map(saida => SaidaMapper.toDomain(saida));
   }
 
-  async count(name?: string){
-    return this.repo.count({where: this.makeWhere(name)})
+  async count(name?: string) {
+    return this.repo.count({ where: this.makeWhere(name) });
   }
 
-  private makeWhere(name?: string){
-    const where: FindOptionsWhere<SaidaEntity> = {}
-    if(name) {
+  private makeWhere(name?: string) {
+    const where: FindOptionsWhere<SaidaOrmEntity> = {};
+    if (name) {
       where.name = name;
     }
     return where;

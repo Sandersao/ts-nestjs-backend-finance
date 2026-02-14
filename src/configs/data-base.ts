@@ -1,4 +1,4 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 // export const dataBaseConnection: TypeOrmModuleOptions = {
 //   type: 'postgres',
@@ -18,4 +18,4 @@ export const dataBaseConnection: TypeOrmModuleOptions = {
   autoLoadEntities: true,
   synchronize: true,
   logging: false,
-}
+};

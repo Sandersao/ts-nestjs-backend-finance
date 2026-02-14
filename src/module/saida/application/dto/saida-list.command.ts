@@ -1,4 +1,4 @@
-import { PaginacaoCommand } from "src/comon/application/dto/paginacao.command";
+import { PaginacaoCommand } from 'src/common/application/dto/paginacao.command';
 
 export class SaidaListCommand extends PaginacaoCommand {
   constructor(
@@ -7,6 +7,6 @@ export class SaidaListCommand extends PaginacaoCommand {
     public readonly name?: string,
     public readonly ocorrencia?: Date,
   ) {
-    super(page, perPage)
+    super(page, perPage);
   }
 }

@@ -9,15 +9,13 @@ import { providerList } from './configs/provider';
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataBaseConnection),
-    TypeOrmModule.forFeature(entityList)
+    TypeOrmModule.forFeature(entityList),
   ],
   controllers: controllerList,
   providers: [...entityList, ...providerList],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(...middlewareList)
-      .forRoutes('*')
+    consumer.apply(...middlewareList).forRoutes('*');
   }
 }
