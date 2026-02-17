@@ -1,4 +1,3 @@
-import { describe } from 'node:test';
 import { makeSaida } from 'test/factory/make-saida';
 
 describe('Saída domain entity', () => {
@@ -8,4 +7,4 @@ describe('Saída domain entity', () => {
     expect(saida.name).toBe('Testes');
     expect(saida.value).toBe(2.5);
   });
-}).catch((err) => console.error('There whas a error at the top', err));
+});
