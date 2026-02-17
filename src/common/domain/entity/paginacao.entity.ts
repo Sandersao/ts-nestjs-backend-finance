@@ -8,7 +8,7 @@ export class PaginacaoEntity {
     public totalPages?: number,
   ) {}
 
-  public static create(page: number, perPage: number) {
+  public static create(page: number, perPage: number): PaginacaoEntity {
     if (perPage <= 0) {
       throw new RegistroPaginaZeradoException();
     }
@@ -29,6 +29,14 @@ export class PaginacaoEntity {
   }
 
   get offset() {
-    return this.page * this.perPage;
+    return this.perPage * this.page;
+  }
+
+  get currentPerPage(): number {
+    if (!this.total) {
+      return 0;
+    }
+    const remaining = this.total - this.offset;
+    return Math.max(0, Math.min(this.perPage, remaining));
   }
 }
