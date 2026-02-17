@@ -1,4 +1,4 @@
-import { ValueObject } from 'src/common/domain/value-object/value-object';
+import { ValueObject } from '@/common/domain/value-object/value-object';
 import { SaidaCreateComNomeSomenteCharsVaziosException } from '../exception/saida-create-com-nome-somente-chars-vazios.exception';
 
 export class SaidaName extends ValueObject<string> {

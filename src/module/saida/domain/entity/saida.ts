@@ -1,7 +1,7 @@
 import { SaidaName } from '../value-object/saida-name';
 import { UuidVo } from '../../../../common/domain/value-object/uuid.vo';
 import { SaidaValue } from '../value-object/saida-value';
-import { CriacaoVo } from 'src/common/domain/value-object/criacao.vo';
+import { CriacaoVo } from '@/common/domain/value-object/criacao.vo';
 
 export class Saida {
   constructor(

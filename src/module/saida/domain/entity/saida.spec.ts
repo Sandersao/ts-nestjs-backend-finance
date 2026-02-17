@@ -1,4 +1,4 @@
-import { makeSaida } from 'test/factory/make-saida';
+import { makeSaida } from '@test/factory/make-saida';
 
 describe('Saída domain entity', () => {
   it('deve criar uma saída válida', () => {

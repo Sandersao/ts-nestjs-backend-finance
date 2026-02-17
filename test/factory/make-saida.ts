@@ -1,4 +1,4 @@
-import { Saida } from 'src/module/saida/domain/entity/saida';
+import { Saida } from '@/module/saida/domain/entity/saida';
 
 export function makeSaida(
   props?: Partial<{
