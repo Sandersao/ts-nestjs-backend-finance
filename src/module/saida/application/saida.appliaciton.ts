@@ -19,8 +19,8 @@ export class SaidaApplication {
   async list(command: SaidaListCommand) {
     const retorno = await this.listUseCase.execute(command);
     return {
-      data: retorno.data.map(item => SaidaMapper.toResponse(item)),
-      pagination: retorno.pagination
+      data: retorno.data.map((item) => SaidaMapper.toResponse(item)),
+      pagination: retorno.pagination,
     };
   }
 }

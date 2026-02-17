@@ -18,23 +18,20 @@ export class SaidaTypeormRepository implements SaidaRepository {
       uuid: saida.uuid,
       name: saida.name,
       value: saida.value,
-      criacaoData: saida.criacao.date
+      criacaoData: saida.criacao.date,
     });
 
     return SaidaMapper.toDomain(await this.repo.save(ormEntity));
   }
 
-  async findAll(
-    limit: number,
-    offset: number,
-    name?: string,
-  ) {
-    return (await this.repo.find({
+  async findAll(limit: number, offset: number, name?: string) {
+    return (
+      await this.repo.find({
         where: this.makeWhere(name),
         skip: offset,
         take: limit,
-    }))
-    .map(saida => SaidaMapper.toDomain(saida));
+      })
+    ).map((saida) => SaidaMapper.toDomain(saida));
   }
 
   async count(name?: string) {

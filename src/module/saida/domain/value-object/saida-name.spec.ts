@@ -1,4 +1,4 @@
-import { SaidaName } from "./saida-name";
+import { SaidaName } from './saida-name';
 
 describe('NomeDaSaida VO', () => {
   it('deve criar nome válido', () => {

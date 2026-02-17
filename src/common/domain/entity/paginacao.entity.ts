@@ -17,7 +17,7 @@ export class PaginacaoEntity {
 
   public appendTotal(total: number) {
     this.total = total;
-    this.calcTotalPages(this.perPage, total)
+    this.calcTotalPages(this.perPage, total);
   }
 
   private calcTotalPages(perPage: number, total: number) {

@@ -20,7 +20,6 @@ export class ApiResponseInterceptor<T> implements NestInterceptor<
 
     return next.handle().pipe(
       map((data: InterfaceUseCaseReturn<T>): ApiResponse<T> => {
-
         return {
           code: response.statusCode ?? HttpStatus.OK,
           message: data.message ?? 'Success',

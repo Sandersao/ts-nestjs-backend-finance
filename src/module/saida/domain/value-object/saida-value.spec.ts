@@ -1,4 +1,4 @@
-import { SaidaValue } from "./saida-value";
+import { SaidaValue } from './saida-value';
 
 describe('ValorDaSaida VO', () => {
   it('deve criar valor válido', () => {

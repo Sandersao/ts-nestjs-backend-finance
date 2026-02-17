@@ -13,10 +13,7 @@ export class SaidaListUseCase {
   ) {}
 
   async execute(command: SaidaListCommand) {
-    const paginacao = PaginacaoEntity.create(
-      command.page,
-      command.perPage,
-    );
+    const paginacao = PaginacaoEntity.create(command.page, command.perPage);
     const saidaList = await this.repository.findAll(
       paginacao.limit,
       paginacao.offset,

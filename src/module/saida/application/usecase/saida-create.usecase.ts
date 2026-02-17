@@ -1,7 +1,10 @@
 import { Saida } from '../../domain/entity/saida';
 import { SaidaCreateCommand } from '../dto/saida-create.command';
 import { Inject, Injectable } from '@nestjs/common';
-import { SAIDA_REPOSITORY, SaidaRepository } from '../../domain/repository/saida.repository';
+import {
+  SAIDA_REPOSITORY,
+  SaidaRepository,
+} from '../../domain/repository/saida.repository';
 import { UUID_SERVICE, UuidService } from '../../domain/service/uuid.service';
 import { DATE_SERVICE, DateService } from '../../domain/service/date.service';
 import { SaidaMapper } from '../mapper/saida.mapper';
@@ -14,7 +17,7 @@ export class SaidaCreateUseCase {
     @Inject(UUID_SERVICE)
     private readonly uuidService: UuidService,
     @Inject(DATE_SERVICE)
-    private readonly dateService: DateService
+    private readonly dateService: DateService,
   ) {}
 
   async execute(command: SaidaCreateCommand) {
@@ -22,9 +25,9 @@ export class SaidaCreateUseCase {
       this.uuidService.generate(),
       command.name,
       command.value,
-      this.dateService.generate()
+      this.dateService.generate(),
     );
-    
+
     await this.repository.save(saida);
     return SaidaMapper.toResponse(saida);
   }

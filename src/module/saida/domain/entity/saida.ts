@@ -8,27 +8,27 @@ export class Saida {
     private readonly _uuid: UuidVo,
     private readonly _name: SaidaName,
     private readonly _value: SaidaValue,
-    private readonly _criacao: CriacaoVo
+    private readonly _criacao: CriacaoVo,
   ) {}
 
   static create(uuid: string, name: string, value: number, cracaoData: Date) {
-    const uuidVo = new UuidVo(uuid)
-    const nameVo = new SaidaName(name)
-    const valueVo = new SaidaValue(value)
-    const criacaoDataVo = new CriacaoVo(cracaoData)
+    const uuidVo = new UuidVo(uuid);
+    const nameVo = new SaidaName(name);
+    const valueVo = new SaidaValue(value);
+    const criacaoDataVo = new CriacaoVo(cracaoData);
     return new Saida(uuidVo, nameVo, valueVo, criacaoDataVo);
   }
 
-  get uuid () {
+  get uuid() {
     return this._uuid.value;
   }
-  get name () {
+  get name() {
     return this._name.value;
   }
-  get value () {
+  get value() {
     return this._value.value;
   }
-  get criacao () {
+  get criacao() {
     return this._criacao;
-  } 
+  }
 }
