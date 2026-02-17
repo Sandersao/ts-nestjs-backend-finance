@@ -1,4 +1,4 @@
-import { ValueObject } from '@/common/domain/value-object/value-object';
+import { ValueObject } from '@src/common/domain/value-object/value-object';
 import { SaidaCreateComValorNegativoZeroException } from '../exception/saida-create-com-valor-negativo-zero.exception';
 
 export class SaidaValue extends ValueObject<number> {

@@ -1,4 +1,4 @@
-import { DomainException } from '@/common/domain/exception/domain.exception';
+import { DomainException } from '@src/common/domain/exception/domain.exception';
 
 export class SaidaCreateComValorNegativoZeroException extends DomainException {
   constructor() {

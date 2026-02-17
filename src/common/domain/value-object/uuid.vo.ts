@@ -1,4 +1,4 @@
-import { ValueObject } from '@/common/domain/value-object/value-object';
+import { ValueObject } from '@src/common/domain/value-object/value-object';
 
 export class UuidVo extends ValueObject<string> {
   constructor(value: string) {
