@@ -6,11 +6,15 @@ export class CriacaoVo {
     private readonly _user?: UuidVo,
   ) {}
 
+  static create(date: Date, user: string) {
+    return new CriacaoVo(date, UuidVo.create(user));
+  }
+
   get date() {
     return this._date;
   }
 
-  get use() {
+  get user() {
     return this._user;
   }
 }

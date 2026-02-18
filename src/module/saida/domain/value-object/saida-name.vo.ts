@@ -1,7 +1,7 @@
 import { ValueObject } from '@src/common/domain/value-object/value-object';
 import { SaidaCreateComNomeSomenteCharsVaziosException } from '../exception/saida-create-com-nome-somente-chars-vazios.exception';
 
-export class SaidaName extends ValueObject<string> {
+export class SaidaNameVo extends ValueObject<string> {
   constructor(value: string) {
     super(value);
   }
@@ -11,6 +11,6 @@ export class SaidaName extends ValueObject<string> {
       throw new SaidaCreateComNomeSomenteCharsVaziosException();
     }
 
-    return new SaidaName(name.trim());
+    return new SaidaNameVo(name.trim());
   }
 }

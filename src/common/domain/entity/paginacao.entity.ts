@@ -4,7 +4,7 @@ export class PaginacaoEntity {
   constructor(
     public readonly page: number,
     public readonly perPage: number,
-    public total?: number,
+    public _total?: number,
     public totalPages?: number,
   ) {}
 
@@ -15,9 +15,13 @@ export class PaginacaoEntity {
     return new PaginacaoEntity(page, perPage);
   }
 
-  public appendTotal(total: number) {
-    this.total = total;
+  set total(total: number) {
+    this._total = total;
     this.calcTotalPages(this.perPage, total);
+  }
+
+  get total() {
+    return this._total!;
   }
 
   private calcTotalPages(perPage: number, total: number) {

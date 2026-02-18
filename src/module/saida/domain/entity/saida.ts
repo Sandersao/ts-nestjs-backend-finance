@@ -1,21 +1,21 @@
-import { SaidaName } from '../value-object/saida-name';
+import { SaidaNameVo } from '../value-object/saida-name.vo';
 import { UuidVo } from '../../../../common/domain/value-object/uuid.vo';
-import { SaidaValue } from '../value-object/saida-value';
+import { SaidaValueVo } from '../value-object/saida-value.vo';
 import { CriacaoVo } from '@src/common/domain/value-object/criacao.vo';
 
 export class Saida {
   constructor(
     private readonly _uuid: UuidVo,
-    private readonly _name: SaidaName,
-    private readonly _value: SaidaValue,
+    private readonly _name: SaidaNameVo,
+    private readonly _value: SaidaValueVo,
     private readonly _criacao: CriacaoVo,
   ) {}
 
   static create(uuid: string, name: string, value: number, cracaoData: Date) {
     const uuidVo = new UuidVo(uuid);
-    const nameVo = new SaidaName(name);
-    const valueVo = new SaidaValue(value);
-    const criacaoDataVo = new CriacaoVo(cracaoData);
+    const nameVo = new SaidaNameVo(name);
+    const valueVo = new SaidaValueVo(value);
+    const criacaoDataVo = CriacaoVo.create(cracaoData, 'default-user');
     return new Saida(uuidVo, nameVo, valueVo, criacaoDataVo);
   }
 

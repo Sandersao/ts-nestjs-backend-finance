@@ -8,9 +8,4 @@ export abstract class ValueObject<T> {
   get value(): T {
     return this._value;
   }
-
-  equals(vo?: ValueObject<T>): boolean {
-    if (!vo) return false;
-    return JSON.stringify(this._value) === JSON.stringify(vo._value);
-  }
 }
