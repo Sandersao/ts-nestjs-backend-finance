@@ -1,4 +1,5 @@
 import { makePaginacao } from '@test/factory/make-paginacao';
+import { RegistroPaginaZeradoException } from '../exception/registro-pagina-zerado.exception';
 
 describe('Paginacao domain entity', () => {
   it('Deve criar a paginação, 1º pagina, 10 registros por pagina e total de 18 registros', () => {
@@ -21,7 +22,7 @@ describe('Paginacao domain entity', () => {
     expect(paginacao.currentPerPage).toBe(8);
   });
 
-  it('Deve criar a paginação, 3º pagina, 10 registros por pagina e total de 18 registros', () => {
+  it('Deve criar a paginação, 3º pagina, 10 registros por pagina e total de 32 registros', () => {
     const paginacao = makePaginacao({ page: 2, perPage: 10 });
     paginacao.total = 32;
     expect(paginacao.page).toBe(2);
@@ -31,7 +32,7 @@ describe('Paginacao domain entity', () => {
     expect(paginacao.currentPerPage).toBe(10);
   });
 
-  it('Deve criar a paginação, 4º pagina, 10 registros por pagina e total de 18 registros', () => {
+  it('Deve criar a paginação, 4º pagina, 10 registros por pagina e total de 32 registros', () => {
     const paginacao = makePaginacao({ page: 3, perPage: 10 });
     paginacao.total = 32;
     expect(paginacao.page).toBe(3);
@@ -39,5 +40,22 @@ describe('Paginacao domain entity', () => {
     expect(paginacao.offset).toBe(30);
     expect(paginacao.limit).toBe(10);
     expect(paginacao.currentPerPage).toBe(2);
+  });
+
+  it('Deve criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
+    expect(() => {
+      const paginacao = makePaginacao({ page: 3, perPage: 0 });
+      paginacao.total = 32;
+    }).toThrow(RegistroPaginaZeradoException);
+  });
+
+  it('Deve criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
+    const paginacao = makePaginacao({ page: 3, perPage: 10 });
+    expect(paginacao.currentPerPage).toBe(0);
+  });
+
+  it('Deve criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
+    const paginacao = makePaginacao({ page: 3, perPage: 10 });
+    expect(paginacao.currentPerPage).toBe(0);
   });
 });

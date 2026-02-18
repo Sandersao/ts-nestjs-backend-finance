@@ -20,7 +20,7 @@ export class SaidaListUseCase {
       command.name,
     );
     const saidaTotal = await this.repository.count(command.name);
-    paginacao.appendTotal(saidaTotal);
+    paginacao.total = saidaTotal;
     return {
       data: saidaList,
       pagination: paginacao,
