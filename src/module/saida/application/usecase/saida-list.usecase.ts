@@ -4,7 +4,7 @@ import {
   SaidaRepository,
 } from '../../domain/repository/saida.repository';
 import { Inject } from '@nestjs/common';
-import { PaginacaoEntity } from 'src/common/domain/entity/paginacao.entity';
+import { PaginacaoEntity } from '@src/common/domain/entity/paginacao.entity';
 
 export class SaidaListUseCase {
   constructor(
