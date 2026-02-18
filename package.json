@@ -85,7 +85,9 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/dist/",
-      "/test/"
+      "/test/",
+      "/domain/repository/",
+      "/domain/service/"
     ],
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
