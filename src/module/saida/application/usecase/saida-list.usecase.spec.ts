@@ -1,26 +1,33 @@
 import { Saida } from '../../domain/entity/saida';
+import { SaidaRepository } from '../../domain/repository/saida.repository';
 import { SaidaListUseCase } from './saida-list.usecase';
+
+const mock = () => ({
+  saidaRepositoryMock: {
+    findAll: jest
+      .fn()
+      .mockReturnValue([
+        Saida.create('fake-uuid', 'fake-output', 2.5, new Date('2026-02-13')),
+      ]),
+    count: jest.fn().mockReturnValue(50),
+    save: jest.fn(),
+  },
+});
 
 describe('SaidaListUseCase', () => {
   it('should list the persited saida list', async () => {
-    const repositoryMock = {
-      findAll: jest
-        .fn()
-        .mockReturnValue([
-          Saida.create('fake-uuid', 'fake-output', 2.5, new Date('2026-02-13')),
-        ]),
-      count: jest.fn().mockReturnValue(50),
-    };
-
-    const useCase = new SaidaListUseCase(repositoryMock as any);
+    const { saidaRepositoryMock } = mock();
+    const useCase = new SaidaListUseCase(
+      saidaRepositoryMock as SaidaRepository,
+    );
 
     const saidaRetornada = await useCase.execute({
       page: 0,
       perPage: 10,
     });
 
-    expect(repositoryMock.findAll).toHaveBeenCalledTimes(1);
-    expect(repositoryMock.count).toHaveBeenCalledTimes(1);
+    expect(saidaRepositoryMock.findAll).toHaveBeenCalledTimes(1);
+    expect(saidaRepositoryMock.count).toHaveBeenCalledTimes(1);
 
     expect(saidaRetornada.data[0].uuid).toBe('fake-uuid');
     expect(saidaRetornada.data[0].name).toBe('fake-output');
