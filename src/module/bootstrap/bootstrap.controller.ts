@@ -7,7 +7,9 @@ export class BootstrapController {
   constructor(private readonly appService: BootstrapService) {}
 
   @Get()
-  list(@Req() req: Request) {
-    return this.appService.list(req.get('host')!);
+  list(@Req() req: Request | string) {
+    return this.appService.list(
+      typeof req === 'string' ? req : req.get('host')!,
+    );
   }
 }

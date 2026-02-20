@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BootstrapService } from '@src/module/bootstrap/bootstrap.service';
 import { BootstrapController } from './bootstrap.controller';
-import { Request } from 'express';
 
 describe('BootstrapController', () => {
   let bootstrapController: BootstrapController;
@@ -16,8 +15,12 @@ describe('BootstrapController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(bootstrapController.list({} as Request)).toBe('Hello World!');
+    it('should return routes', () => {
+      const fakeHost = 'fake-host';
+
+      expect(bootstrapController.list(fakeHost)).toBe(
+        `<a href="http://${fakeHost}/docs">Docs</a>`,
+      );
     });
   });
 });
