@@ -87,7 +87,8 @@
       "/dist/",
       "/test/",
       "/domain/repository/",
-      "/domain/service/"
+      "/domain/service/",
+      "/application/dto/"
     ],
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
