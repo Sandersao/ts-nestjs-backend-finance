@@ -1,3 +1,5 @@
+import { PaginacaoPageInvalidoException } from '../exception/paginacao-page-invalido.exception';
+import { PaginacaoPerPageInvalidoException } from '../exception/paginacao-per-page-invalido.exception';
 import { RegistroPaginaZeradoException } from '../exception/registro-pagina-zerado.exception';
 
 export class PaginacaoEntity {
@@ -8,7 +10,15 @@ export class PaginacaoEntity {
     public totalPages?: number,
   ) {}
 
-  public static create(page: number, perPage: number): PaginacaoEntity {
+  public static create(page?: number, perPage?: number): PaginacaoEntity {
+    if (page === undefined || page == null) {
+      throw new PaginacaoPageInvalidoException();
+    }
+
+    if (perPage === undefined || perPage === null) {
+      throw new PaginacaoPerPageInvalidoException();
+    }
+
     if (perPage <= 0) {
       throw new RegistroPaginaZeradoException();
     }

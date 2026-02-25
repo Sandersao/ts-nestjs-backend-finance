@@ -1,4 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { entityList } from '@src/configs/entity';
+import { migrationList } from '@src/configs/migration';
+import { join } from 'path';
 
 // export const dataBaseConnection: TypeOrmModuleOptions = {
 //   type: 'postgres',
@@ -12,10 +15,12 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 //   entities: entityList
 // }
 
-export const dataBaseConnection: TypeOrmModuleOptions = {
+export const dataSource: TypeOrmModuleOptions = {
   type: 'sqlite',
-  database: ':memory:',
-  autoLoadEntities: true,
-  synchronize: true,
+  // database: ':memory:',
+  database: join(process.cwd(), 'data', 'database.sqlite'),
+  entities: entityList,
+  migrations: migrationList,
+  synchronize: false,
   logging: false,
 };

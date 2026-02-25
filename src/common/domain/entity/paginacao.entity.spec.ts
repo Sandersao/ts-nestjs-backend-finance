@@ -1,5 +1,7 @@
 import { makePaginacao } from '@test/factory/make-paginacao';
 import { RegistroPaginaZeradoException } from '../exception/registro-pagina-zerado.exception';
+import { PaginacaoPageInvalidoException } from '../exception/paginacao-page-invalido.exception';
+import { PaginacaoPerPageInvalidoException } from '../exception/paginacao-per-page-invalido.exception';
 
 describe('Paginacao domain entity', () => {
   it('Deve criar a paginação, 1º pagina, 10 registros por pagina e total de 18 registros', () => {
@@ -42,7 +44,7 @@ describe('Paginacao domain entity', () => {
     expect(paginacao.currentPerPage).toBe(2);
   });
 
-  it('Deve criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
+  it('Deve criar não criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
     expect(() => {
       const paginacao = makePaginacao({ page: 3, perPage: 0 });
       paginacao.total = 32;
@@ -57,5 +59,19 @@ describe('Paginacao domain entity', () => {
   it('Deve criar a paginação, 4º pagina, 0 registros por pagina e total de 32 registros', () => {
     const paginacao = makePaginacao({ page: 3, perPage: 10 });
     expect(paginacao.currentPerPage).toBe(0);
+  });
+
+  it('Deve criar não criar a paginação, Page indefinido', () => {
+    expect(() => {
+      const paginacao = makePaginacao({ page: undefined, perPage: 10 });
+      paginacao.total = 32;
+    }).toThrow(PaginacaoPageInvalidoException);
+  });
+
+  it('Deve criar não criar a paginação, Per page indefinido', () => {
+    expect(() => {
+      const paginacao = makePaginacao({ page: 0, perPage: undefined });
+      paginacao.total = 32;
+    }).toThrow(PaginacaoPerPageInvalidoException);
   });
 });

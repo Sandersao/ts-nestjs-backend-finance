@@ -1,14 +1,19 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { dataBaseConnection } from './configs/data-base';
-import { controllerList } from './configs/controller';
-import { entityList } from './configs/entity';
-import { middlewareList } from './configs/middleware';
-import { providerList } from './configs/provider';
+import { dataSource } from '@src/database/data-source';
+import { controllerList } from '@src/configs/controller';
+import { entityList } from '@src/configs/entity';
+import { middlewareList } from '@src/configs/middleware';
+import { providerList } from '@src/configs/provider';
+import { E2EDataSource } from '@test/database/data-source.e2e';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(dataBaseConnection),
+    // TypeOrmModule.forRoot(dataBaseConnection),
+    TypeOrmModule.forRootAsync({
+      useFactory: () =>
+        process.env.NODE_ENV === 'test' ? E2EDataSource : dataSource,
+    }),
     TypeOrmModule.forFeature(entityList),
   ],
   controllers: controllerList,

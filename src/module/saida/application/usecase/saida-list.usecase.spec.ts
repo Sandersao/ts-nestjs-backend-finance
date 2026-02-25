@@ -32,7 +32,7 @@ describe('SaidaListUseCase', () => {
     expect(saidaRetornada.data[0].uuid).toBe('fake-uuid');
     expect(saidaRetornada.data[0].name).toBe('fake-output');
     expect(saidaRetornada.data[0].value).toBe(2.5);
-    expect(saidaRetornada.data[0].criacao.date.toDateString()).toBe(
+    expect(saidaRetornada.data[0].ocorrencia.toDateString()).toBe(
       new Date('2026-02-13').toDateString(),
     );
 
