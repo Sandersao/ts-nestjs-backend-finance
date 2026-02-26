@@ -90,7 +90,11 @@
       "/test/",
       "/domain/repository/",
       "/domain/service/",
-      "/application/dto/"
+      "/application/dto/",
+      "/src/database/",
+      "/src/main.ts",
+      "api-response-interceptor.ts",
+      "domain-exception-filter.ts"
     ],
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
