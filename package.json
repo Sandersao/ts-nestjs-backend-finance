@@ -85,6 +85,7 @@
       "/node_modules/",
       "/dist/",
       "/test/",
+      "/coverage/",
       "/application/dto/",
       "/src/database/",
       "/src/main.ts",
