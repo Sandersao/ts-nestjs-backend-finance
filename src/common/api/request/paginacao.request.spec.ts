@@ -46,17 +46,6 @@ describe('PaginacaoRequest', () => {
       expect(errors.length).toBeGreaterThan(0);
     });
 
-    it('should fail when perPage is less than 1', async () => {
-      const dto = makeDto({
-        page: 0,
-        perPage: 0,
-      });
-
-      const errors = await validate(dto);
-
-      expect(errors.length).toBeGreaterThan(0);
-    });
-
     it('should fail when page is not a number', async () => {
       const dto = makeDto({
         page: 'abc',

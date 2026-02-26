@@ -46,14 +46,14 @@ describe('SaidaController (e2e)', () => {
   });
 
   it('/saida (GET) sem paginação', () => {
-    return request(server).get('/saida').send().expect(400);
+    return request(server).get('/saida').send().expect(200);
   });
 
   it('/saida (GET) sem pagina', () => {
-    return request(server).get('/saida?perPage=10').send().expect(400);
+    return request(server).get('/saida?perPage=10').send().expect(200);
   });
 
   it('/saida (GET) sem per page', () => {
-    return request(server).get('/saida?page=0').send().expect(400);
+    return request(server).get('/saida?page=0').send().expect(200);
   });
 });

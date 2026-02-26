@@ -1,28 +1,14 @@
-import { PaginacaoPageInvalidoException } from '../exception/paginacao-page-invalido.exception';
-import { PaginacaoPerPageInvalidoException } from '../exception/paginacao-per-page-invalido.exception';
-import { RegistroPaginaZeradoException } from '../exception/registro-pagina-zerado.exception';
-
 export class PaginacaoEntity {
   constructor(
-    public readonly page: number,
-    public readonly perPage: number,
+    public page: number,
+    public perPage: number,
     public _total?: number,
     public totalPages?: number,
   ) {}
 
-  public static create(page?: number, perPage?: number): PaginacaoEntity {
-    if (page === undefined || page == null) {
-      throw new PaginacaoPageInvalidoException();
-    }
-
-    if (perPage === undefined || perPage === null) {
-      throw new PaginacaoPerPageInvalidoException();
-    }
-
-    if (perPage <= 0) {
-      throw new RegistroPaginaZeradoException();
-    }
-    return new PaginacaoEntity(page, perPage);
+  public static create(page: number, perPage: number): PaginacaoEntity {
+    const paginacao = new PaginacaoEntity(page ?? 0, perPage ?? 10);
+    return paginacao;
   }
 
   set total(total: number) {
