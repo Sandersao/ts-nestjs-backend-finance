@@ -1,6 +1,6 @@
 ### Aboult
 
-This project is a POC of arctecture, in order to show my abilityes as programar and software arctecture
+This project is a POC of arctecture, in order to show my abilityes as programar and software arctect
 
 ### Some extra info
 
