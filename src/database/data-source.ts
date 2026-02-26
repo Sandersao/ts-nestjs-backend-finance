@@ -5,7 +5,8 @@ import { join } from 'node:path';
 
 export const dataSource: TypeOrmModuleOptions = {
   type: 'sqlite',
-  database: join(process.cwd(), 'data', 'database.sqlite'),
+  // database: join(process.cwd(), 'data', 'database.sqlite'),
+  database: ':memory:',
   entities: entityList,
   migrations: migrationList,
   synchronize: false,
