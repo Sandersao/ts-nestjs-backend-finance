@@ -22,7 +22,7 @@ async function bootstrap() {
     }),
   );
 
-  // app.useGlobalFilters(...exceptionFilterList);
+  app.useGlobalFilters(...exceptionFilterList);
   app.useGlobalInterceptors(...interceptorList);
 
   const document = SwaggerModule.createDocument(app, config);
