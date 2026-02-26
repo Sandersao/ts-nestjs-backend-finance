@@ -9,7 +9,6 @@ import { E2EDataSource } from '@test/database/data-source.e2e';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot(dataBaseConnection),
     TypeOrmModule.forRootAsync({
       useFactory: () =>
         process.env.NODE_ENV === 'test' ? E2EDataSource : dataSource,
