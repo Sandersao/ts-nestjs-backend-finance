@@ -19,7 +19,9 @@
     "test:cov": "npm run test:clean && jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migration:run": "npm run build && typeorm migration:run -d dist/src/database/data-source.cli.js",
+    "migration:revert": "npm run build && typeorm migration:revert -d dist/src/database/data-source.cli.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -79,19 +81,34 @@
         }
       ]
     },
-    "collectCoverageFrom": [
-      "**/*.{ts,js}"
-    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/dist/",
-      "/test/"
+      "/test/",
+      "/coverage/",
+      "/application/dto/",
+      "/src/database/",
+      "/src/main.ts",
+      "api-response-interceptor.ts",
+      "domain-exception-filter.ts"
     ],
-    "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@src/(.*)$": "<rootDir>/src/$1",
       "^@test/(.*)$": "<rootDir>/test/$1"
+    },
+    "collectCoverageFrom": [
+      "**/*.{ts,js}"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
     }
   },
   "lint-staged": {

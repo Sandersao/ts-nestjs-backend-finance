@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('tb_saida')
 export class SaidaOrmEntity {
   @PrimaryColumn()
   uuid!: string;

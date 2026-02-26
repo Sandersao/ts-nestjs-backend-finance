@@ -1,18 +1,14 @@
-import { RegistroPaginaZeradoException } from '../exception/registro-pagina-zerado.exception';
-
 export class PaginacaoEntity {
   constructor(
-    public readonly page: number,
-    public readonly perPage: number,
+    public page: number,
+    public perPage: number,
     public _total?: number,
     public totalPages?: number,
   ) {}
 
   public static create(page: number, perPage: number): PaginacaoEntity {
-    if (perPage <= 0) {
-      throw new RegistroPaginaZeradoException();
-    }
-    return new PaginacaoEntity(page, perPage);
+    const paginacao = new PaginacaoEntity(page ?? 0, perPage ?? 10);
+    return paginacao;
   }
 
   set total(total: number) {

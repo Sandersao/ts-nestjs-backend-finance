@@ -4,7 +4,8 @@ import {
   SaidaRepository,
 } from '../../domain/repository/saida.repository';
 import { Inject } from '@nestjs/common';
-import { PaginacaoEntity } from 'src/common/domain/entity/paginacao.entity';
+import { PaginacaoEntity } from '@src/common/domain/entity/paginacao.entity';
+import { SaidaMapper } from '../mapper/saida.mapper';
 
 export class SaidaListUseCase {
   constructor(
@@ -21,8 +22,9 @@ export class SaidaListUseCase {
     );
     const saidaTotal = await this.repository.count(command.name);
     paginacao.total = saidaTotal;
+
     return {
-      data: saidaList,
+      data: saidaList.map((item) => SaidaMapper.toResponse(item)),
       pagination: paginacao,
     };
   }
